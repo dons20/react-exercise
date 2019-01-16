@@ -1,0 +1,39 @@
+.button {
+  background-color: blue;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  border: 1px solid transparent;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-weight: 400;
+  will-change: transform;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &-primary {
+    background-color: "#007eff";
+  }
+
+  &-secondary {
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid #fff;
+  }
+}
+
+.header {
+  align-items: center;
+  background-color: rgb(102,63,180);
+  color: white;
+  display: flex;
+  flex-direction: row;
+  height: 48px;
+  padding: 6px 10px;
+  width: 100%;
+}
+
+.logo {
+  float: left;
+  margin: 8px;
+}

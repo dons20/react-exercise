@@ -1,39 +1,99 @@
+$primary-color: #007eff;
+$secondary-color: #ffffff00;
+$logout-color: #bb0000;
+
 .button {
-  background-color: blue;
+  background-color: rgb(0, 155, 0);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   border: 1px solid transparent;
   border-radius: 5px;
   color: white;
   cursor: pointer;
   font-weight: 400;
-  will-change: transform;
+  padding: 8px;
+  width: 100px;
 
-  &:hover {
-    transform: translateY(-2px);
+  &.primary {
+    background-color: $primary-color;
+    &:active {
+      background-color: darken($primary-color, 5%);
+    }
   }
 
-  &-primary {
-    background-color: "#007eff";
-  }
-
-  &-secondary {
-    background-color: rgba(255, 255, 255, 0);
+  &.secondary {
+    background-color: $secondary-color;
     border: 1px solid #fff;
+  }
+
+  &.logout {
+    background-color: $logout-color;
+    &:active {
+      background-color: darken($logout-color, 5%);
+    }
+  }
+
+  &.alternate {
+    left: 0;
+    right: 0;
+    margin: 45vh auto;
+    position: absolute;
+  }
+
+  &.user {
+    @extend .secondary;
+    border-radius: 50%;
+    box-shadow: none;
+    font-weight: bold;
+    width: auto;
   }
 }
 
 .header {
   align-items: center;
   background-color: rgb(102,63,180);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.24);
   color: white;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   height: 48px;
   padding: 6px 10px;
-  width: 100%;
+  width: calc(100% - 20px);
+  & .left {
+    align-items: center;
+    display: flex;
+    flex: 1;
+  }
+  & .right {
+    display: flex;
+    & .button {
+      margin: 0 10px;
+    }
+  }
 }
 
 .logo {
   float: left;
   margin: 8px;
+}
+
+@media only screen and (max-width: 425px) {
+  .button {
+    width: 75px;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .button {
+    transition: transform 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+    will-change: transform;
+    
+    &:hover:not(.user) {
+      transform: translateY(-2px);
+    }
+
+    &:active:not(.user) {
+      transform: translateY(0px);
+    }
+  }
 }

@@ -7,11 +7,13 @@ class UserList extends Component {
     super(props);
     this.state = {
       users: [],
+      data: [],
       loading: true
     };
   }
 
   componentDidMount() {
+    document.title = "List of Users"
     let { users } = this.context;
     if (users && users.length > 0) {
       this.setState({ users: users, loading: false });
@@ -22,7 +24,8 @@ class UserList extends Component {
 
   navigate(id) {
     this.context.updateProperty("users", this.state.users);
-    this.props.history.push(`/users/${id}`);
+    this.context.updateProperty("data", this.state.data);
+    this.props.history.push(`/users/${id+1}`);
   }
 
   async fetchData() {
@@ -47,7 +50,7 @@ class UserList extends Component {
             </div>
           );
         });
-        this.setState({ users: users, loading: false });
+        this.setState({ users: users, loading: false, data: data.results });
       })
       .catch(err => console.log(err));
   }
@@ -64,6 +67,7 @@ class UserList extends Component {
         </div>
         {!this.state.loading && (
           <div className={styles.refresh} onClick={() => {
+              this.setState({users: [], loading: true});
               this.fetchData();
             }}>
             Load new entries
